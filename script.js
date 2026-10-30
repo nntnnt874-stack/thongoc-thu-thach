@@ -190,41 +190,6 @@ const questions = [
     },
 
 
-    {
-        question:
-            "Một chính phủ triển khai chính sách kiểm soát thông tin rất nghiêm ngặt nhằm hạn chế tin giả trong thời kỳ khủng hoảng dịch bệnh. Tuy nhiên, chính sách này đồng thời hạn chế việc tiếp cận thông tin chính thống, làm giảm niềm tin của người dân và gây khó khăn cho công tác phòng dịch.\n\nĐánh giá nào thể hiện tư duy an ninh toàn diện nhất?",
-
-        answers: [
-            "Kiểm soát thông tin càng nghiêm ngặt thì an ninh quốc gia càng được bảo đảm.",
-            "Chỉ cần bảo đảm quyền tự do thông tin, không cần có biện pháp xử lý thông tin sai lệch.",
-            "Chính sách an ninh cần cân bằng giữa kiểm soát thông tin sai lệch, minh bạch, bảo vệ quyền lợi hợp pháp và duy trì niềm tin xã hội.",
-            "Tin giả chỉ là vấn đề truyền thông, không liên quan đến an ninh phi truyền thống."
-        ],
-
-        correct: 2,
-
-        explanation:
-            "Chính sách an ninh cần cân bằng giữa kiểm soát thông tin sai lệch, minh bạch, bảo vệ quyền lợi hợp pháp và duy trì niềm tin xã hội."
-    },
-
-
-    {
-        question:
-            "Một quốc gia đã đầu tư đầy đủ vào quân đội, hệ thống y tế, an ninh mạng và năng lượng. Tuy nhiên, các cơ quan quản lý hoạt động thiếu phối hợp, chia sẻ dữ liệu chậm và thường xuyên đưa ra quyết định mâu thuẫn khi xảy ra khủng hoảng.\n\nYếu tố nào đang trở thành điểm nghẽn lớn nhất trong năng lực bảo đảm an ninh quốc gia?",
-
-        answers: [
-            "Thiếu tiềm lực vật chất và công nghệ.",
-            "Thiếu cơ chế quản trị liên ngành, phối hợp và điều hành thống nhất trong xử lý các nguy cơ có tính liên kết.",
-            "Thiếu sự hiện diện của lực lượng quân sự trong mọi hoạt động dân sự.",
-            "Thiếu hợp tác quốc tế, mặc dù chưa có căn cứ cho thấy khủng hoảng vượt khỏi khả năng quốc gia."
-        ],
-
-        correct: 1,
-
-        explanation:
-            "Thiếu cơ chế quản trị liên ngành, phối hợp và điều hành thống nhất trong xử lý các nguy cơ có tính liên kết."
-    }
-
 ];
 
 
