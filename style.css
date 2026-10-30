@@ -1,0 +1,1736 @@
+/* =====================================================
+   THỎ NGỌC THỬ THÁCH - GIẢI CỨU CHÚ CUỘI
+   STYLE.CSS - PHIÊN BẢN HOÀN CHỈNH
+===================================================== */
+
+
+/* =====================================================
+   1. RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    color: #fff;
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(115, 70, 180, 0.45),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(70, 35, 140, 0.35),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #12052d 0%,
+            #24105c 45%,
+            #0d0630 100%
+        );
+
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   2. BIẾN
+===================================================== */
+
+:root {
+
+    --gold: #ffe38a;
+    --gold-light: #fff4bf;
+    --purple: #7d55d9;
+    --purple-dark: #29115f;
+
+    --pink: #ff8fc4;
+    --green: #83ffd1;
+
+    --white: #ffffff;
+
+    --panel:
+        rgba(255, 255, 255, 0.09);
+
+    --panel-border:
+        rgba(255, 255, 255, 0.18);
+
+    --shadow:
+        0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =====================================================
+   3. NỀN SAO
+===================================================== */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    z-index: -2;
+}
+
+body::before {
+
+    opacity: 0.7;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.9) 1px,
+            transparent 1.5px
+        );
+
+    background-size:
+        85px 85px;
+
+    background-position:
+        10px 20px;
+}
+
+body::after {
+
+    opacity: 0.35;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,227,138,.9) 1px,
+            transparent 1.5px
+        );
+
+    background-size:
+        130px 130px;
+
+    background-position:
+        40px 70px;
+}
+
+
+/* =====================================================
+   4. MẶT TRĂNG
+===================================================== */
+
+.moon {
+
+    position: fixed;
+
+    width: 150px;
+    height: 150px;
+
+    top: 40px;
+    right: 70px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fffde4,
+            #ffe89b 60%,
+            #f4c85b 100%
+        );
+
+    box-shadow:
+        0 0 30px rgba(255, 230, 150, .7),
+        0 0 80px rgba(255, 220, 120, .35);
+
+    z-index: -1;
+
+    animation:
+        moonGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes moonGlow {
+
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.05);
+    }
+}
+
+
+/* =====================================================
+   5. HIỆU ỨNG
+===================================================== */
+
+#effects {
+
+    position: fixed;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 20;
+}
+
+
+/* =====================================================
+   6. PHÁO HOA
+===================================================== */
+
+.firework {
+    position: absolute;
+}
+
+.spark {
+
+    position: fixed;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    box-shadow:
+        0 0 8px currentColor,
+        0 0 18px currentColor;
+
+    animation:
+        explode 1.4s ease-out forwards;
+}
+
+@keyframes explode {
+
+    0% {
+        opacity: 1;
+
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(
+                var(--x),
+                var(--y)
+            )
+            scale(0.2);
+    }
+}
+
+
+/* =====================================================
+   7. HOA RƠI THEO CHUỘT
+===================================================== */
+
+#flowerTrail {
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 50;
+}
+
+.mouse-flower {
+
+    position: fixed;
+
+    pointer-events: none;
+
+    user-select: none;
+
+    animation:
+        flowerFall 1.8s
+        ease-out
+        forwards;
+}
+
+@keyframes flowerFall {
+
+    0% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg)
+            scale(1);
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(
+                calc(-50% + var(--fall-x)),
+                130px
+            )
+            rotate(var(--rotate))
+            scale(.25);
+    }
+}
+
+
+/* =====================================================
+   8. CONFETTI
+===================================================== */
+
+.confetti {
+
+    position: fixed;
+
+    top: -20px;
+
+    width: 9px;
+    height: 14px;
+
+    border-radius: 2px;
+
+    animation:
+        confettiFall
+        4s
+        linear
+        forwards;
+}
+
+@keyframes confettiFall {
+
+    0% {
+
+        transform:
+            translateY(-20px)
+            rotate(0deg);
+
+        opacity: 1;
+    }
+
+    100% {
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   9. HEADER
+===================================================== */
+
+header {
+
+    width: min(1150px, 94%);
+
+    margin:
+        0 auto;
+
+    padding:
+        35px 20px 10px;
+
+    text-align: center;
+}
+
+header h1 {
+
+    color: var(--gold);
+
+    font-size:
+        clamp(2rem, 5vw, 4rem);
+
+    line-height: 1.15;
+
+    font-weight: 900;
+
+    text-shadow:
+        0 0 12px rgba(255,227,138,.65),
+        0 5px 25px rgba(0,0,0,.4);
+
+    letter-spacing: .5px;
+}
+
+header p {
+
+    margin-top: 12px;
+
+    color:
+        rgba(255,255,255,.82);
+
+    font-size:
+        clamp(.95rem, 2vw, 1.2rem);
+}
+
+
+/* =====================================================
+   10. NHÂN VẬT
+===================================================== */
+
+.cast {
+
+    width: min(850px, 92%);
+
+    margin:
+        25px auto 15px;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        flex-end;
+
+    gap:
+        clamp(20px, 6vw, 70px);
+}
+
+.cast img {
+
+    width:
+        clamp(75px, 12vw, 130px);
+
+    height:
+        clamp(75px, 12vw, 130px);
+
+    object-fit:
+        contain;
+
+    filter:
+        drop-shadow(
+            0 12px 18px
+            rgba(0,0,0,.35)
+        );
+
+    transition:
+        transform .3s ease;
+}
+
+.cast img:hover {
+
+    transform:
+        translateY(-10px)
+        scale(1.06);
+}
+
+
+/* =====================================================
+   11. KHUNG CHUNG
+===================================================== */
+
+.screen {
+
+    width:
+        min(1100px, 94%);
+
+    margin:
+        25px auto 50px;
+
+    padding:
+        clamp(20px, 4vw, 42px);
+
+    border:
+        1px solid
+        var(--panel-border);
+
+    border-radius:
+        28px;
+
+    background:
+        var(--panel);
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+/* =====================================================
+   12. ẨN
+===================================================== */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =====================================================
+   13. MÀN HÌNH BẮT ĐẦU
+===================================================== */
+
+#startScreen {
+
+    text-align: center;
+
+    animation:
+        screenAppear
+        .8s
+        ease-out;
+}
+
+@keyframes screenAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+}
+
+#startScreen h2 {
+
+    color:
+        var(--gold);
+
+    font-size:
+        clamp(1.7rem, 4vw, 2.8rem);
+
+    margin-bottom:
+        18px;
+}
+
+#startScreen p {
+
+    max-width:
+        750px;
+
+    margin:
+        0 auto 28px;
+
+    color:
+        rgba(255,255,255,.85);
+
+    line-height:
+        1.8;
+}
+
+
+/* =====================================================
+   14. NÚT
+===================================================== */
+
+button {
+
+    font-family:
+        inherit;
+}
+
+.start-btn,
+.next-btn,
+.restart-btn,
+.play-again-btn {
+
+    border:
+        none;
+
+    border-radius:
+        999px;
+
+    padding:
+        14px 30px;
+
+    font-size:
+        1rem;
+
+    font-weight:
+        800;
+
+    color:
+        #2c145f;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff0a8,
+            #ffc85e
+        );
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.3);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.start-btn:hover,
+.next-btn:hover,
+.restart-btn:hover,
+.play-again-btn:hover {
+
+    transform:
+        translateY(-3px)
+        scale(1.02);
+
+    box-shadow:
+        0 12px 30px
+        rgba(255,210,100,.3);
+}
+
+.start-btn:active,
+.next-btn:active,
+.restart-btn:active,
+.play-again-btn:active {
+
+    transform:
+        translateY(0)
+        scale(.98);
+}
+
+
+/* =====================================================
+   15. MÀN HÌNH GAME
+===================================================== */
+
+#gameScreen {
+
+    animation:
+        screenAppear
+        .5s
+        ease-out;
+}
+
+
+/* =====================================================
+   16. TOP GAME
+===================================================== */
+
+.game-top {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    gap:
+        15px;
+
+    margin-bottom:
+        20px;
+
+    flex-wrap:
+        wrap;
+}
+
+.question-count {
+
+    color:
+        var(--gold);
+
+    font-weight:
+        800;
+
+    font-size:
+        1rem;
+}
+
+.progress-text {
+
+    color:
+        rgba(255,255,255,.8);
+
+    font-size:
+        .95rem;
+}
+
+
+/* =====================================================
+   17. THANH TIẾN ĐỘ
+===================================================== */
+
+.progress {
+
+    width:
+        100%;
+
+    height:
+        10px;
+
+    margin-bottom:
+        28px;
+
+    border-radius:
+        999px;
+
+    overflow:
+        hidden;
+
+    background:
+        rgba(255,255,255,.12);
+}
+
+#progressBar {
+
+    width:
+        0%;
+
+    height:
+        100%;
+
+    border-radius:
+        inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff8fc4,
+            #ffe38a,
+            #83ffd1
+        );
+
+    box-shadow:
+        0 0 15px
+        rgba(255,227,138,.5);
+
+    transition:
+        width .5s ease;
+}
+
+
+/* =====================================================
+   18. CÂU HỎI
+===================================================== */
+
+.question-box {
+
+    padding:
+        clamp(20px, 3vw, 30px);
+
+    border-radius:
+        22px;
+
+    background:
+        rgba(0,0,0,.16);
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    margin-bottom:
+        25px;
+}
+
+.question-box h2 {
+
+    color:
+        #fff;
+
+    font-size:
+        clamp(1.15rem, 2.2vw, 1.55rem);
+
+    line-height:
+        1.7;
+
+    white-space:
+        pre-line;
+}
+
+
+/* =====================================================
+   19. ĐÁP ÁN
+===================================================== */
+
+#answers {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap:
+        15px;
+}
+
+.answer {
+
+    position:
+        relative;
+
+    min-height:
+        100px;
+
+    padding:
+        18px 20px;
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    gap:
+        15px;
+
+    text-align:
+        left;
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    border-radius:
+        18px;
+
+    color:
+        #fff;
+
+    background:
+        rgba(255,255,255,.075);
+
+    cursor:
+        pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+.answer:hover {
+
+    transform:
+        translateY(-3px);
+
+    background:
+        rgba(255,255,255,.13);
+
+    border-color:
+        rgba(255,227,138,.5);
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.2);
+}
+
+.answer:disabled {
+
+    cursor:
+        default;
+}
+
+
+/* =====================================================
+   20. CHỮ A B C D
+===================================================== */
+
+.answer .letter {
+
+    flex:
+        0 0 38px;
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    color:
+        #321365;
+
+    background:
+        var(--gold);
+
+    font-weight:
+        900;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0,0,0,.25);
+}
+
+.answer > span:last-child {
+
+    line-height:
+        1.55;
+
+    padding-top:
+        6px;
+
+    font-size:
+        .98rem;
+}
+
+
+/* =====================================================
+   21. ĐÁP ÁN ĐÚNG
+===================================================== */
+
+.answer.correct {
+
+    border-color:
+        #83ffd1;
+
+    background:
+        rgba(80,255,180,.16);
+
+    box-shadow:
+        0 0 25px
+        rgba(80,255,180,.2);
+}
+
+.answer.correct .letter {
+
+    background:
+        #83ffd1;
+}
+
+
+/* =====================================================
+   22. ĐÁP ÁN SAI
+===================================================== */
+
+.answer.wrong {
+
+    border-color:
+        #ff6b8a;
+
+    background:
+        rgba(255,70,110,.15);
+
+    animation:
+        shake
+        .45s
+        ease;
+}
+
+.answer.wrong .letter {
+
+    background:
+        #ff6b8a;
+
+    color:
+        #fff;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform:
+            translateX(0);
+    }
+
+    25% {
+        transform:
+            translateX(-8px);
+    }
+
+    50% {
+        transform:
+            translateX(8px);
+    }
+
+    75% {
+        transform:
+            translateX(-5px);
+    }
+}
+
+
+/* =====================================================
+   23. FEEDBACK
+===================================================== */
+
+.feedback {
+
+    display:
+        none;
+
+    margin-top:
+        22px;
+
+    padding:
+        18px 20px;
+
+    border-radius:
+        18px;
+
+    line-height:
+        1.65;
+
+    animation:
+        feedbackAppear
+        .35s
+        ease-out;
+}
+
+.feedback.show {
+
+    display:
+        block;
+}
+
+.feedback.good {
+
+    background:
+        rgba(80,255,180,.12);
+
+    border:
+        1px solid
+        rgba(80,255,180,.35);
+}
+
+.feedback.bad {
+
+    background:
+        rgba(255,90,120,.12);
+
+    border:
+        1px solid
+        rgba(255,90,120,.35);
+}
+
+.feedback strong {
+
+    color:
+        var(--gold);
+
+    font-size:
+        1.1rem;
+}
+
+.feedback p {
+
+    color:
+        rgba(255,255,255,.88);
+}
+
+@keyframes feedbackAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =====================================================
+   24. COMIC
+===================================================== */
+
+#comic {
+
+    display:
+        none;
+
+    margin:
+        18px auto;
+
+    max-width:
+        500px;
+
+    text-align:
+        center;
+}
+
+#comic.show {
+
+    display:
+        block;
+
+    animation:
+        comicPop
+        .45s
+        ease-out;
+}
+
+#comic img {
+
+    max-width:
+        100%;
+
+    height:
+        auto;
+
+    border-radius:
+        20px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.3);
+}
+
+@keyframes comicPop {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(.8)
+            rotate(-4deg);
+    }
+
+    70% {
+
+        transform:
+            scale(1.05)
+            rotate(2deg);
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+
+/* =====================================================
+   25. TRẠNG THÁI CHÚ CUỘI
+===================================================== */
+
+#cuoiStatus {
+
+    text-align:
+        center;
+
+    margin:
+        18px 0;
+
+    font-size:
+        2.2rem;
+
+    min-height:
+        45px;
+
+    transition:
+        transform .3s ease;
+}
+
+
+/* =====================================================
+   26. NÚT TIẾP
+===================================================== */
+
+.next-area {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    margin-top:
+        25px;
+}
+
+.next-btn {
+
+    font-size:
+        1rem;
+
+    min-width:
+        210px;
+}
+
+
+/* =====================================================
+   27. MÀN HÌNH KẾT THÚC
+===================================================== */
+
+#endScreen {
+
+    text-align:
+        center;
+
+    animation:
+        victoryAppear
+        .8s
+        ease-out;
+}
+
+#endScreen h2 {
+
+    color:
+        var(--gold);
+
+    font-size:
+        clamp(2rem, 5vw, 3.5rem);
+
+    margin-bottom:
+        12px;
+
+    text-shadow:
+        0 0 20px
+        rgba(255,227,138,.45);
+}
+
+#endScreen p {
+
+    color:
+        rgba(255,255,255,.88);
+
+    font-size:
+        1.05rem;
+
+    line-height:
+        1.7;
+
+    margin-bottom:
+        25px;
+}
+
+@keyframes victoryAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.9)
+            translateY(30px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+
+/* =====================================================
+   28. NHÂN VẬT KẾT THÚC
+===================================================== */
+
+.final-cast {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        flex-end;
+
+    gap:
+        25px;
+
+    margin:
+        25px auto;
+
+    flex-wrap:
+        wrap;
+}
+
+.final-cast img {
+
+    width:
+        clamp(90px, 18vw, 170px);
+
+    height:
+        auto;
+
+    object-fit:
+        contain;
+
+    filter:
+        drop-shadow(
+            0 15px 20px
+            rgba(0,0,0,.35)
+        );
+
+    animation:
+        characterFloat
+        3s
+        ease-in-out
+        infinite;
+}
+
+.final-cast img:nth-child(2) {
+
+    animation-delay:
+        .4s;
+}
+
+.final-cast img:nth-child(3) {
+
+    animation-delay:
+        .8s;
+}
+
+@keyframes characterFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-10px);
+    }
+}
+
+
+/* =====================================================
+   29. VIDEO KẾT THÚC
+===================================================== */
+
+.ending-video-wrap {
+
+    width:
+        min(850px, 100%);
+
+    margin:
+        30px auto;
+
+    padding:
+        8px;
+
+    border-radius:
+        22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,227,138,.35),
+            rgba(255,143,196,.2),
+            rgba(131,255,209,.2)
+        );
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.4);
+}
+
+.ending-video {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    max-height:
+        500px;
+
+    border-radius:
+        17px;
+
+    background:
+        #000;
+}
+
+
+/* =====================================================
+   30. FOOTER
+===================================================== */
+
+footer {
+
+    width:
+        min(1100px, 94%);
+
+    margin:
+        0 auto 30px;
+
+    text-align:
+        center;
+
+    color:
+        rgba(255,255,255,.55);
+
+    font-size:
+        .85rem;
+}
+
+
+/* =====================================================
+   31. HIỆU ỨNG NHẤP NHÁY NHẸ
+===================================================== */
+
+.start-btn::before {
+
+    content:
+        "✨ ";
+
+}
+
+.start-btn::after {
+
+    content:
+        " ✨";
+
+}
+
+
+/* =====================================================
+   32. RESPONSIVE TABLET
+===================================================== */
+
+@media
+    (max-width: 800px) {
+
+    .moon {
+
+        width:
+            110px;
+
+        height:
+            110px;
+
+        top:
+            25px;
+
+        right:
+            25px;
+    }
+
+    #answers {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .answer {
+
+        min-height:
+            85px;
+    }
+
+    .cast {
+
+        gap:
+            25px;
+    }
+
+    .screen {
+
+        padding:
+            24px 18px;
+    }
+}
+
+
+/* =====================================================
+   33. RESPONSIVE MOBILE
+===================================================== */
+
+@media
+    (max-width: 560px) {
+
+    body {
+
+        font-size:
+            14px;
+    }
+
+    header {
+
+        padding-top:
+            25px;
+    }
+
+    header h1 {
+
+        font-size:
+            2rem;
+    }
+
+    header p {
+
+        font-size:
+            .9rem;
+    }
+
+    .moon {
+
+        width:
+            75px;
+
+        height:
+            75px;
+
+        top:
+            15px;
+
+        right:
+            15px;
+
+        opacity:
+            .75;
+    }
+
+    .cast {
+
+        gap:
+            10px;
+
+        margin-top:
+            20px;
+    }
+
+    .cast img {
+
+        width:
+            70px;
+
+        height:
+            70px;
+    }
+
+    .screen {
+
+        width:
+            calc(100% - 20px);
+
+        padding:
+            18px 13px;
+
+        border-radius:
+            20px;
+    }
+
+    .question-box {
+
+        padding:
+            17px 15px;
+
+        border-radius:
+            16px;
+    }
+
+    .question-box h2 {
+
+        font-size:
+            1rem;
+
+        line-height:
+            1.65;
+    }
+
+    .answer {
+
+        padding:
+            14px;
+
+        gap:
+            10px;
+
+        border-radius:
+            15px;
+    }
+
+    .answer .letter {
+
+        flex-basis:
+            34px;
+
+        width:
+            34px;
+
+        height:
+            34px;
+
+        font-size:
+            .85rem;
+    }
+
+    .answer > span:last-child {
+
+        font-size:
+            .9rem;
+
+        padding-top:
+            5px;
+    }
+
+    .feedback {
+
+        padding:
+            14px;
+
+        font-size:
+            .9rem;
+    }
+
+    .ending-video-wrap {
+
+        margin:
+            20px auto;
+
+        padding:
+            5px;
+
+        border-radius:
+            15px;
+    }
+
+    .ending-video {
+
+        border-radius:
+            11px;
+    }
+
+    .final-cast {
+
+        gap:
+            10px;
+    }
+
+    .final-cast img {
+
+        width:
+            85px;
+    }
+
+    .start-btn,
+    .next-btn,
+    .restart-btn,
+    .play-again-btn {
+
+        width:
+            100%;
+
+        padding:
+            13px 20px;
+    }
+}
+
+
+/* =====================================================
+   34. MÀN HÌNH RẤT NHỎ
+===================================================== */
+
+@media
+    (max-width: 380px) {
+
+    .cast img {
+
+        width:
+            60px;
+
+        height:
+            60px;
+    }
+
+    header h1 {
+
+        font-size:
+            1.7rem;
+    }
+
+    .answer > span:last-child {
+
+        font-size:
+            .84rem;
+    }
+}
+
+
+/* =====================================================
+   35. GIẢM CHUYỂN ĐỘNG
+===================================================== */
+
+@media
+    (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        scroll-behavior:
+            auto !important;
+
+        transition-duration:
+            .01ms !important;
+    }
+
+    .mouse-flower,
+    .spark,
+    .confetti {
+
+        display:
+            none;
+    }
+}

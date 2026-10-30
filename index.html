@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#12052d"
+    >
+
+    <meta
+        name="description"
+        content="Thỏ Ngọc thử thách - Giải cứu Chú Cuội"
+    >
+
+    <title>
+        Thỏ Ngọc thử thách - Giải cứu Chú Cuội
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+
+<body>
+
+    <!-- =================================================
+         MẶT TRĂNG
+    ================================================== -->
+
+    <div
+        class="moon"
+        aria-hidden="true"
+    ></div>
+
+
+    <!-- =================================================
+         HIỆU ỨNG PHÁO HOA
+    ================================================== -->
+
+    <div
+        id="effects"
+        aria-hidden="true"
+    ></div>
+
+
+    <!-- =================================================
+         HOA RƠI THEO CHUỘT
+    ================================================== -->
+
+    <div
+        id="flowerTrail"
+        aria-hidden="true"
+    ></div>
+
+
+    <!-- =================================================
+         NHẠC
+    ================================================== -->
+
+    <!-- Nhạc khi đang ở màn hình chờ -->
+
+    <audio
+        id="waitingMusic"
+        src="nhac-cho.mp3"
+        loop
+        preload="auto"
+    ></audio>
+
+
+    <!-- Nhạc khi bắt đầu chơi -->
+
+    <audio
+        id="gameMusic"
+        src="nhac-choi.mp3"
+        loop
+        preload="auto"
+    ></audio>
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <header>
+
+        <h1>
+            🐇 Thỏ Ngọc thử thách 🌙
+        </h1>
+
+        <p>
+            ✨ Giải cứu Chú Cuội - Chinh phục thử thách ✨
+        </p>
+
+    </header>
+
+
+    <!-- =================================================
+         NHÂN VẬT
+    ================================================== -->
+
+    <section
+        class="cast"
+        aria-label="Nhân vật"
+    >
+
+        <img
+            src="chi-hang.png"
+            alt="Chị Hằng"
+        >
+
+        <img
+            src="tho-ngoc.png"
+            alt="Thỏ Ngọc"
+        >
+
+        <img
+            src="chu-cuoi.png"
+            alt="Chú Cuội"
+        >
+
+    </section>
+
+
+    <!-- =================================================
+         MÀN HÌNH BẮT ĐẦU
+    ================================================== -->
+
+    <main>
+
+        <section
+            id="startScreen"
+            class="screen"
+        >
+
+            <h2>
+                🌕 CHÀO MỪNG ĐẾN VỚI ĐÊM TRUNG THU 🌕
+            </h2>
+
+            <p>
+                Chú Cuội đang gặp nguy hiểm và cần sự giúp đỡ
+                của bạn! Hãy vượt qua 12 câu hỏi thử thách
+                để đưa Chú Cuội trở về với Chị Hằng.
+            </p>
+
+            <p>
+                🐇 Trả lời đúng để tiến lên.<br>
+                🌸 Trả lời sai được phép thử lại.<br>
+                🎆 Hãy cố gắng hoàn thành toàn bộ thử thách!
+            </p>
+
+            <button
+                id="startBtn"
+                class="start-btn"
+                type="button"
+            >
+                BẮT ĐẦU THỬ THÁCH
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             MÀN HÌNH GAME
+        ================================================== -->
+
+        <section
+            id="gameScreen"
+            class="screen hidden"
+        >
+
+            <!-- TOP -->
+
+            <div class="game-top">
+
+                <div
+                    id="questionCount"
+                    class="question-count"
+                >
+                    Câu 1 / 12
+                </div>
+
+                <div
+                    id="progressText"
+                    class="progress-text"
+                >
+                    Chú Cuội: 0 / 12 🌙
+                </div>
+
+            </div>
+
+
+            <!-- THANH TIẾN ĐỘ -->
+
+            <div
+                class="progress"
+                aria-label="Tiến độ"
+            >
+
+                <div
+                    id="progressBar"
+                ></div>
+
+            </div>
+
+
+            <!-- CÂU HỎI -->
+
+            <div class="question-box">
+
+                <h2 id="questionText">
+                    Câu hỏi sẽ xuất hiện ở đây.
+                </h2>
+
+            </div>
+
+
+            <!-- ĐÁP ÁN -->
+
+            <div
+                id="answers"
+                aria-label="Các phương án trả lời"
+            ></div>
+
+
+            <!-- FEEDBACK -->
+
+            <div
+                id="feedback"
+                class="feedback"
+                aria-live="polite"
+            ></div>
+
+
+            <!-- COMIC KHI TRẢ LỜI SAI -->
+
+            <div id="comic">
+
+                <!--
+                    Nếu bạn có ảnh comic riêng,
+                    có thể thêm vào đây.
+
+                    Ví dụ:
+
+                    <img
+                        src="comic-cuoi.png"
+                        alt="Chú Cuội bị bánh kem"
+                    >
+                -->
+
+            </div>
+
+
+            <!-- TRẠNG THÁI CHÚ CUỘI -->
+
+            <div
+                id="cuoiStatus"
+                aria-live="polite"
+            >
+                🌳🧑🏻‍🌾
+            </div>
+
+
+            <!-- NÚT TIẾP -->
+
+            <div class="next-area">
+
+                <button
+                    id="nextBtn"
+                    class="next-btn hidden"
+                    type="button"
+                >
+                    CÂU TIẾP THEO ➜
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MÀN HÌNH CHIẾN THẮNG
+        ================================================== -->
+
+        <section
+            id="endScreen"
+            class="screen hidden"
+        >
+
+            <h2>
+                🎉 CHÚC MỪNG! 🎉
+            </h2>
+
+            <p>
+                Bạn đã hoàn thành toàn bộ 12 câu hỏi
+                và giải cứu thành công Chú Cuội!
+            </p>
+
+
+            <!-- NHÂN VẬT KẾT THÚC -->
+
+            <div
+                class="final-cast"
+                aria-label="Các nhân vật"
+            >
+
+                <img
+                    src="chi-hang.png"
+                    alt="Chị Hằng"
+                >
+
+                <img
+                    src="tho-ngoc.png"
+                    alt="Thỏ Ngọc"
+                >
+
+                <img
+                    src="chu-cuoi.png"
+                    alt="Chú Cuội"
+                >
+
+            </div>
+
+
+            <!-- =================================================
+                 VIDEO KẾT THÚC
+            ================================================== -->
+
+            <div class="ending-video-wrap">
+
+                <video
+                    id="endingVideo"
+                    class="ending-video"
+                    src="video-ket-thuc.mp4"
+                    controls
+                    playsinline
+                    preload="metadata"
+                >
+                    Trình duyệt của bạn không hỗ trợ phát video.
+                </video>
+
+            </div>
+
+
+            <!-- CHƠI LẠI -->
+
+            <button
+                id="playAgainBtn"
+                class="play-again-btn"
+                type="button"
+            >
+                🔄 CHƠI LẠI
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <footer>
+
+        🌕 Thỏ Ngọc thử thách - Giải cứu Chú Cuội 🌕
+        <br>
+
+        Chúc bạn có một mùa Trung Thu thật vui vẻ! 🥮✨
+
+    </footer>
+
+
+    <!-- =================================================
+         JAVASCRIPT
+    ================================================== -->
+
+    <script
+        src="script.js"
+    ></script>
+
+</body>
+
+</html>
